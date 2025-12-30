@@ -19,9 +19,9 @@ exports.getProfile = async (req, res) => {
 // UPDATE PROFILE
 exports.updateProfile = async (req, res) => {
   try {
-    const { username, email, bio } = req.body;
+    const { username, email, phone } = req.body;
 
-    const updated = { username, email, bio };
+    const updated = { username, email, phone };
 
     if (req.file) {
       updated.profileImage = req.file.filename;

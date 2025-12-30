@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   role: { type: String, default: "User" },
   status: { type: String, default: "Active" },
-  bio: { type: String, default: "" },
+   phone: { type: String, default: "" },
+  // bio: { type: String, default: "" },
   profileImage: { type: String, default: "" },
 });
 
