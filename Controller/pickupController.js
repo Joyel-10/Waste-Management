@@ -120,10 +120,10 @@ const getLatestScheduledPickup = async (req, res) => {
 
 const cancelPickup = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const { id } = req.params;
 
     const pickup = await Pickup.findOneAndUpdate(
-      { userId, status: "Scheduled" },
+      { _id: id, status: "Scheduled" },
       { status: "Cancelled" },
       { new: true }
     );

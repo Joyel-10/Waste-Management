@@ -36,15 +36,13 @@
 // const PORT = process.env.PORT || 4000;
 
 // app.listen(PORT, () => {
-//   console.log(`🚀 Server running at http://localhost:${PORT}`);
+//   console.log(` Server running at http://localhost:${PORT}`);
 // });
 
 
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-
-// Import database connection function
 const connectDB = require("./connection1");
 
 // ROUTES
@@ -77,14 +75,9 @@ app.use("/uploads", express.static("uploads"));
 // PORT
 const PORT = process.env.PORT || 4000;
 
-// Connect to database FIRST, then start server
-connectDB()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(` Server running at http://localhost:${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error(" Server failed to start:", err);
-    process.exit(1);
+//  CONNECT DB FIRST, THEN START SERVER
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(` Server running on port ${PORT}`);
   });
+});
