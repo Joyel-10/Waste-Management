@@ -31,6 +31,7 @@
 
 const express = require("express");
 const router = express.Router();
+const adminAuth = require("../Middleware/adminAuth");
 
 const {
   schedulePickup,
@@ -55,6 +56,7 @@ router.get("/all", getAllPickups);
 
 router.get("/:id", getPickupById);
 router.put("/:id", updatePickupById);
-router.delete("/:id", deletePickupById);  
+// router.delete("/:id", deletePickupById);  
+router.delete("/admin/:id", adminAuth, deletePickupById);
 
 module.exports = router;

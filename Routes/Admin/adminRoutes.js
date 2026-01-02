@@ -27,25 +27,25 @@ const {
   getAdminDashboard,
 } = require("../../Controller/Admin/adminDashboardController");
 
-// ===============================
-// ADMIN AUTH (PUBLIC)
+
+// ADMIN AUTH 
 // ===============================
 router.post("/register", registerAdmin);
 router.post("/login", loginAdmin);
 
-// ===============================
-// ADMIN PROFILE (PROTECTED)
+
+// ADMIN PROFILE 
 // ===============================
 router.get("/profile", authMiddleware, getAdminProfile);
 router.put("/profile", authMiddleware, updateAdminProfile);
 
-// ===============================
-// ADMIN DASHBOARD (PROTECTED)
+
+// ADMIN DASHBOARD 
 // ===============================
 router.get("/dashboard", authMiddleware, getAdminDashboard);
 
-// ===============================
-// ADMIN → USER MANAGEMENT (PROTECTED)
+
+// ADMIN → USER MANAGEMENT 
 // ===============================
 router.get("/get-all-users", authMiddleware, getAllUsers);
 router.get("/get-user/:id", authMiddleware, getUserById);
