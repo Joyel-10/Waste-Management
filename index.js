@@ -70,7 +70,11 @@ app.use("/api/profile", profileRoutes);
 app.use("/api/admin", adminRoutes);
 
 // STATIC FILES
-app.use("/uploads", express.static("uploads"));
+// app.use("/uploads", express.static("uploads"));
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+
 
 // PORT
 const PORT = process.env.PORT || 4000;
