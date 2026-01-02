@@ -44,6 +44,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./connection1");
+const path = require("path");
 
 // ROUTES
 const routes = require("./router");
