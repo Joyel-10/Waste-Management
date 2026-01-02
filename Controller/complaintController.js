@@ -4,6 +4,47 @@ const Complaint = require("../Models/complaintModel");
 
 // ADD COMPLAINT (USER)
 
+// exports.addComplaint = async (req, res) => {
+//   try {
+//     console.log("REQ.BODY:", req.body);
+//     console.log("REQ.FILE:", req.file);
+
+//     const { userId, userName, email, subject, message } = req.body;
+
+//     if (!userId || !userName || !email || !subject || !message) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "All fields are required",
+//       });
+//     }
+
+//     const complaint = new Complaint({
+//       userId,
+//       userName,
+//       email,
+//       subject,
+//       message,
+//       image: req.file ? req.file.path : null,
+//     });
+
+//     await complaint.save();
+
+//     return res.status(201).json({
+//       success: true,
+//       message: "Complaint submitted successfully",
+//       complaint,
+//     });
+
+//   } catch (err) {
+//     console.error("Error in addComplaint:", err);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Server error while submitting complaint",
+//       error: err.message,
+//     });
+//   }
+// };
+
 exports.addComplaint = async (req, res) => {
   try {
     console.log("REQ.BODY:", req.body);
@@ -24,7 +65,11 @@ exports.addComplaint = async (req, res) => {
       email,
       subject,
       message,
-      image: req.file ? req.file.path : null,
+
+    
+      image: req.file
+        ? `/uploads/complaints/${req.file.filename}`
+        : null,
     });
 
     await complaint.save();
@@ -44,7 +89,6 @@ exports.addComplaint = async (req, res) => {
     });
   }
 };
-
 
 // GET USER COMPLAINTS
 
