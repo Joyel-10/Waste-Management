@@ -186,16 +186,44 @@ const updatePickupById = async (req, res) => {
 };
 
 // DELETE pickup by id
+// const deletePickupById = async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const deleted = await Pickup.findByIdAndDelete(id);
+//     if (!deleted) return res.status(404).json({ success: false, message: "Pickup not found" });
+//     return res.status(200).json({ success: true, message: "Pickup deleted" });
+//   } catch (err) {
+//     return res.status(500).json({ success: false, message: "Server error", error: err.message });
+//   }
+// };
+
 const deletePickupById = async (req, res) => {
   try {
-    const id = req.params.id;
-    const deleted = await Pickup.findByIdAndDelete(id);
-    if (!deleted) return res.status(404).json({ success: false, message: "Pickup not found" });
-    return res.status(200).json({ success: true, message: "Pickup deleted" });
+    const pickup = await Pickup.findById(req.params.id);
+
+    if (!pickup) {
+      // IMPORTANT: Return success even if already deleted
+      return res.status(200).json({
+        success: true,
+        message: "Pickup already deleted",
+      });
+    }
+
+    await pickup.deleteOne();
+
+    res.status(200).json({
+      success: true,
+      message: "Pickup deleted successfully",
+    });
   } catch (err) {
-    return res.status(500).json({ success: false, message: "Server error", error: err.message });
+    console.error("Delete pickup error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 };
+
 
 
 // Reschedule Pickup
